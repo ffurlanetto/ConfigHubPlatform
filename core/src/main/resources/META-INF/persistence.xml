@@ -4,29 +4,29 @@
 
     <persistence-unit name="ConfigHubMain" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <non-jta-data-source>openejb:Resource/ConfigHubMainDS</non-jta-data-source>
+        <non-jta-data-source>java:comp/env/jdbc/ConfigHubMainDS</non-jta-data-source>
         <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
 
         <properties>
 
-            <property name="hibernate.c3p0.acquire_increment" value="10"/>
-            <property name="hibernate.c3p0.idle_test_period" value="3000"/>
-            <property name="hibernate.c3p0.min_size" value="2"/>
-            <property name="hibernate.c3p0.max_size" value="200"/>
-            <property name="hibernate.c3p0.max_statements" value="0"/>
-            <property name="hibernate.c3p0.timeout" value="3000"/>
-            <property name="hibernate.c3p0.acquireRetryAttempts" value="2"/>
-            <property name="hibernate.c3p0.acquireRetryDelay" value="1000"/>
-
             <property name="hibernate.cache.use_second_level_cache" value="true"/>
             <property name="hibernate.cache.use_query_cache" value="true"/>
             <property name="net.sf.ehcache.configurationResourceName" value="/META-INF/ehcache.xml"/>
-            <property name="hibernate.cache.region.factory_class"
-                      value="org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory"/>
+            <property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory"/>
             <property name="hibernate.cache.use_structured_entries" value="true"/>
 
-            <property name="hibernate.archive.autodetection" value="class"/>
             <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.default_entity_mode" value="pojo"/>
+            <property name="hibernate.order_inserts" value="true"/>
+            <property name="hibernate.order_updates" value="true"/>
+            <property name="hibernate.jdbc.batch_versioned_data" value="true"/>
+            <property name="hibernate.jdbc.use_scrollable_resultset" value="true"/>
+            <property name="hibernate.jdbc.use_streams_for_binary" value="true"/>
+            <property name="hibernate.jdbc.wrap_result_sets" value="true"/>
+            <property name="hibernate.max_fetch_depth" value="1"/>
+            <property name="hibernate.jdbc.batch_size" value="50"/>
+            <property name="hibernate.jdbc.fetch_size" value="200"/>
+            <property name="hibernate.archive.autodetection" value="class"/>
             <property name="hibernate.format_sql" value="false"/>
             <property name="use_sql_comments" value="false"/>
             <property name="hibernate.transaction.flush_before_completion" value="true"/>
@@ -44,4 +44,3 @@
 
 
 </persistence>
-
