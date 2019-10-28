@@ -17,16 +17,28 @@
 
 package com.confighub.api.server;
 
+import java.util.Set;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.reflections.Reflections;
+import org.reflections.scanners.SubTypesScanner;
+import org.reflections.scanners.TypeAnnotationsScanner;
 
 import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.Path;
 import javax.ws.rs.core.Application;
 
-@ApplicationPath("/rest")
+@ApplicationPath("/")
 public class AppConf
         extends Application
 {
     private static final Logger log = LogManager.getLogger(AppConf.class);
 
+    @Override
+    public Set<Class<?>> getClasses() {
+        Reflections reflections = new Reflections("com.confighub.api",
+                new TypeAnnotationsScanner(), new SubTypesScanner());
+        return reflections.getTypesAnnotatedWith(Path.class);
+    }
 }
